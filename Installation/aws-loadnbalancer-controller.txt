@@ -1,0 +1,21 @@
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.11.0/docs/install/iam_policy.json
+aws iam create-policy \\n    --policy-name AWSLoadBalancerControllerIAMPolicy \\n    --policy-document file://iam_policy.json
+eksctl create iamserviceaccount \\n  --cluster=viral-cluster \\n  --namespace=kube-system \\n  --name=aws-load-balancer-controller \\n  --role-name AmazonEKSLoadBalancerControllerRole \\n  --attach-policy-arn=arn:aws:iam::<your-AWS-ACC-ID>:policy/AWSLoadBalancerControllerIAMPolicy \\n  --approve
+eksctl create iamserviceaccount \\n  --cluster=viral-cluster \\n  --namespace=kube-system \\n  --name=aws-load-balancer-controller \\n  --role-name AmazonEKSLoadBalancerControllerRole \\n  --attach-policy-arn=arn:aws:iam::<your-AWS-ACC-ID>:policy/AWSLoadBalancerControllerIAMPolicy \\n  --approve\n  --override-existing-serviceaccounts
+eksctl create iamserviceaccount \\n  --cluster=viral-cluster \\n  --namespace=kube-system \\n  --name=aws-load-balancer-controller \\n  --role-name AmazonEKSLoadBalancerControllerRole \\n  --attach-policy-arn=arn:aws:iam::<your-AWS-ACC-ID>:policy/AWSLoadBalancerControllerIAMPolicy \\n  --approve \\n  --override-existing-serviceaccounts
+helm repo add eks https://aws.github.io/eks-charts
+helm repo update eks
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \\n  -n kube-system \\n  --set clusterName=viral-cluster \\n  --set serviceAccount.create=false \\n  --set serviceAccount.name=aws-load-balancer-controller \\n  --set region=<your-REGION> \\n  --set <your_VPCID>
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \\n  -n kube-system \\n  --set clusterName=viral-cluster \\n  --set serviceAccount.create=false \\n  --set serviceAccount.name=aws-load-balancer-controller \\n  --set region=<your-REGION> \\n  --set <your_VPCID>
+kubectl get deployment -n kube-system aws-load-balancer-controllerkubectl get pods 
+kubectl get pods -n kube-system
+kubectl get events -n kube-system\n
+kubectl describe serviceaccount aws-load-balancer-controller -n kube-system
+kubectl create serviceaccount aws-load-balancer-controller -n kube-system\n
+eksctl create iamserviceaccount \\n  --cluster=viral-cluster \\n  --namespace=kube-system \\n  --name=aws-load-balancer-controller \\n  --role-name AmazonEKSLoadBalancerControllerRole \\n  --attach-policy-arn=arn:aws:iam::<your-AWS-ACC-ID>:policy/AWSLoadBalancerControllerIAMPolicy \\n  --approve \\n  --override-existing-serviceaccounts\n
+kubectl annotate serviceaccount aws-load-balancer-controller \\n  -n kube-system \\n  eks.amazonaws.com/role-arn=arn:aws:iam::<your-AWS-ACC-ID>:role/AmazonEKSLoadBalancerControllerRole\n
+kubectl rollout restart deployment aws-load-balancer-controller -n kube-system\n
+kubectl get pods -n kube-system\n
+kubectl describe pod aws-load-balancer-controller-68c6ff5b9b-scqr8 -n kube-system
+kubectl logs aws-load-balancer-controller-68c69-scqr8 -n kube-system
+kubectl get pods -n kube-system\n
