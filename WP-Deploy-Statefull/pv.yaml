@@ -14,7 +14,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: mysql-storage  # <-- Unique Storage Class
   hostPath:
-    path: "/mnt/data2/mysql"
+    path: "/mnt/data5/mysql"
 
 ---
 
@@ -34,4 +34,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: wp-storage  # <-- Unique Storage Class
   hostPath:
-    path: "/mnt/data2/wordpress"
+    path: "/mnt/data5/wordpress"

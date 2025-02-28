@@ -4,6 +4,9 @@ metadata:
   name: wordpress
   labels:
     app: wordpress
+  annotations:
+    # This annotation instructs the AWS Load Balancer Controller to use ALB
+    service.beta.kubernetes.io/aws-load-balancer-type: "alb"
 spec:
   ports:
     - port: 80
