@@ -6,3 +6,4 @@ resources:
   - pv.yaml
   - mysql-deployment.yaml
   - wordpress-deployment.yaml
+  - wordpress-ingress.yaml

@@ -4,16 +4,17 @@ metadata:
   name: wordpress
   labels:
     app: wordpress
-  annotations:
-    # This annotation instructs the AWS Load Balancer Controller to use ALB
-    service.beta.kubernetes.io/aws-load-balancer-type: "alb"
 spec:
   ports:
-    - port: 80
+    - name: http
+      port: 80
+    - name: https
+      port: 443
   selector:
     app: wordpress
     tier: frontend
-  type: LoadBalancer
+
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -62,8 +63,11 @@ spec:
         - name: WORDPRESS_DB_USER
           value: wordpress
         ports:
-        - containerPort: 80
-          name: wordpress
+          - containerPort: 80
+            name: wordpress-http
+          - containerPort: 443
+            name: wordpress-https
+
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
