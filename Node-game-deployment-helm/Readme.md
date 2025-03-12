@@ -80,6 +80,24 @@ helm install redis-cluster stable/redis \
   --set slave.persistence.size=8Gi \
   --set slave.persistence.storageClass=ebs-sc
 ```
+## OR
+
+## 3️⃣ Install Redis using Helm with json stack
+```sh
+helm install redis-json bitnami/redis \
+  --set usePassword=true \
+  --set redisPassword=password \
+  --set architecture=replication \
+  --set replicaCount=3 \
+  --set master.persistence.enabled=true \
+  --set master.persistence.size=8Gi \
+  --set master.persistence.storageClass=ebs-sc \
+  --set replica.persistence.enabled=true \
+  --set replica.persistence.size=8Gi \
+  --set replica.persistence.storageClass=ebs-sc \
+  --set global.redis.password=password \
+  --set redis.extraFlags="{--loadmodule /opt/bitnami/redis/modules/rejson.so}"
+```
 
 Check Redis pods:
 ```sh

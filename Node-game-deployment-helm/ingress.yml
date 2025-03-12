@@ -6,13 +6,13 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing  # Can be internal or internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'  # Define ports for HTTP/HTTPS
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:148761664071:certificate/1024851a-9a54-451f-a390-34c70fdc48d7
+    alb.ingress.kubernetes.io/certificate-arn: your-certificate-arn  # Replace with your ACM certificate ARN
     # alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08  # Optional: set SSL policy
     alb.ingress.kubernetes.io/ssl-redirect: "443"  # Force HTTP -> HTTPS redirect
 spec:
   ingressClassName: alb  # Use this instead of the deprecated  
   rules:
-  - host: 21hodeem.virals.studio  # Your custom domain name
+  - host: backend.domain.com  # Your custom domain name
     http:
       paths:
       - path: /

@@ -6,14 +6,24 @@ metadata:
     app: backend
 
 data:
-  NODE_ENV: "stag"
+  NODE_ENV: "dev"
   HOST: "0.0.0.0"
   PORT: "3000"
-  BASE_URL: "https://21hodeem:3000"
-  BASE_API_PATH: "https://21hodeem:3000/api/v1"
-  DB_URL: "mongodb://root:yudiz@my-mongo-mongodb.default.svc.cluster.local:27017/poker-game?authSource=admin"
-  REDIS_HOST: "redis-cluster-master.default.svc.cluster.local"
-  REDIS_PORT: "6379"
-  REDIS_USERNAME: "default"
-  BULL_HOST: "redis-cluster-master.default.svc.cluster.local"
-  FRONTEND_URL: "https://game.virals.studio"
+
+  # Base URLs
+  BASE_URL: "https://backend:3000"
+  BASE_API_PATH: "https://backend:3000/api/v1"
+  FRONTEND_URL: "https://fronted"
+
+  # Database
+  DB_URL: "mongodb+srv://root:password@cluster/game?authSource=admin"
+
+  # Redis Configuration
+  REDIS_HOST: "redis.ap-south-1-1.ec2.redns.redis-cloud.com"
+  REDIS_PORT: "14722"
+  REDIS_USERNAME: "default" 
+  REDIS_PASSWORD: "password"
+  BULL_HOST: "redis.ap-south-1-1.ec2.redns.redis-cloud.com"
+
+
+
